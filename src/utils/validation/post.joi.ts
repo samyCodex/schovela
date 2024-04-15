@@ -5,12 +5,10 @@ import {
 import { createPost, editPost, hidePost } from '../../interface';
 import { Schools, attachment_exts, levels } from '../../interface/enum/enum';
 import { FilterPostInterface } from '../../interface/post.interface';
-import { FieldOfStudy, fieldsOfStudy } from '../../interface/faculty';
 import { IDownload } from '../../model/download.model';
 
 
-const validFaculties = Object.values(FieldOfStudy);
-const validDaparment =  fieldsOfStudy
+
 
 export const hidePostSchema = (body: any): Promise<hidePost> => {
   const schema = Joi.object({

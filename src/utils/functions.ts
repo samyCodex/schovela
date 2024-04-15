@@ -40,3 +40,5 @@ export const validateFaculty = async (
   }
 };
 
+
+

@@ -125,7 +125,7 @@ export const createPostService = async (payload: createPost, user: IUser): Promi
              }
 
        if(payload.faculty != "") {
-              
+
        }
        // try {
        //        dbPayload.attachment = uploadFileFromBase64(`content-${id}-${replaceAll(payload.title.toLowerCase(), ' ', '-')}`, payload.attachment_ext, payload.attachment);
@@ -133,16 +133,16 @@ export const createPostService = async (payload: createPost, user: IUser): Promi
        //        throw { ok: false, message: messages.INTERNAL_SERVER_ERROR, status: StatusCodes.INTERNAL_SERVER_ERROR };
        // }
 
-       const create_post = await Post.default.create({ ...dbPayload, UserId: id })
-              .then((post: any) => {
-                     return { ok: true, status: StatusCodes.OK, message: "Success", body: { post } }
-              })
-              .catch((error: any) => {
-                     throw {
-                            ok: false, status: StatusCodes.BAD_REQUEST, message: { error: error.message }
-                     }
-              })
-       return create_post
+       // const create_post = await Post.default.create({ ...dbPayload, UserId: id })
+       //        .then((post: any) => {
+       //               return { ok: true, status: StatusCodes.OK, message: "Success", body: { post } }
+       //        })
+       //        .catch((error: any) => {
+       //               throw {
+       //                      ok: false, status: StatusCodes.BAD_REQUEST, message: { error: error.message }
+       //               }
+       //        })
+       return id
 }
 
 export const getAllPostService = async (payload: FilterPostInterface, user: IUser) => {
