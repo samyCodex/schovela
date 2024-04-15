@@ -3,4 +3,4 @@ node_modules
 build
 index.js
 uploads
-data/mysql.sock
+data
