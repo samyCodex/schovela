@@ -1,6 +1,6 @@
 import { Model, DataTypes, DATE, Sequelize, UUIDV4 } from "sequelize";
 import { sequelize } from "../config/database";
-import { ROLE } from "../interface/enum/enum";;
+import { ROLE, Schools } from "../interface/enum/enum";;
 class User extends Model {
    id!: number;
    fullname : string;
@@ -16,6 +16,7 @@ class User extends Model {
    status : boolean;
    resetToken : string;
    profile_img: string;
+   school: string;
    role: ROLE
 }
 
@@ -28,10 +29,10 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
+    }, 
     phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.STRING,  
+      allowNull: false, 
       defaultValue: "",
     },
     password: {
@@ -48,6 +49,10 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "",
+    },
+    school :{
+      type : DataTypes.ENUM(...Object.values(Schools)),
+      defaultValue: Schools.Udusok
     },
     account_type: {
       type: DataTypes.STRING,

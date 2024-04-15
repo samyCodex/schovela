@@ -7,7 +7,7 @@ import messages from '../../utils/messages'
 import { ApiResponseType } from '../../interface/api.interface'
 import { ROLE } from '../../interface/enum/enum'
 import { deleteUpload, uploadFileFromBase64 } from '../../utils/file'
-import { replaceAll } from '../../utils/string'
+import { replaceAll, validateFaculty } from '../../utils/functions'
 import { FilterPostInterface } from '../../interface/post.interface'
 import { UserModel } from '../../model/user.model'
 import { Op, Sequelize } from 'sequelize'
@@ -113,6 +113,20 @@ export const createPostService = async (payload: createPost, user: IUser): Promi
               dbPayload.live = true;
        }
 
+       if(payload.school && payload.faculty) {
+              const verifyFaculty =  await validateFaculty(payload.school, payload.faculty)
+               if(verifyFaculty === false) {
+                 throw {
+                  ok : false,
+                  status :StatusCodes.BAD_REQUEST,
+                  message : `Unable to find faculty: ${payload.faculty} in school : ${payload.school}`
+                 }
+               }
+             }
+
+       if(payload.faculty != "") {
+              
+       }
        // try {
        //        dbPayload.attachment = uploadFileFromBase64(`content-${id}-${replaceAll(payload.title.toLowerCase(), ' ', '-')}`, payload.attachment_ext, payload.attachment);
        // } catch (error) {
@@ -186,7 +200,7 @@ export const getAllPostService = async (payload: FilterPostInterface, user: IUse
                      continue;
               }
 
-
+ 
 
               if (key == "search") {
                      where.title = Sequelize.where(
@@ -269,8 +283,9 @@ export const getAllPostByIdService = async (user: IUser) => {
               .catch((error: any) => {
                      throw {
                             ok: false, status: StatusCodes.BAD_REQUEST, message: { error: error.message }
-                     }
+                     } 
               })
-       return posts
+       return posts 
 
 }
+ 

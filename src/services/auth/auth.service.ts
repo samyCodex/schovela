@@ -8,6 +8,7 @@ import {IRegister, IUserInfo,  IverifyUser, IUser, ILogin, IForgotten, IChangePa
 import { ApiResponseType } from '../../interface/api.interface';
 import {ExcludeField} from '../../helper/exclude'
 import { StatusCodes } from 'http-status-codes'
+import { validateFaculty } from '../../utils/functions'
 
 
 export const registerService  =  async (payload: IRegister): Promise<ApiResponseType> => {
@@ -92,6 +93,17 @@ export const UserInfo = async (payload: IUserInfo, auth: IUser): Promise<ApiResp
     if(!user || user.status != true) {
       throw { ok: false, status: StatusCodes.UNAUTHORIZED, message: messages.UNAUTHORIZED_REQUEST}
     }
+     if(payload.school && payload.faculty) {
+      const verifyFaculty =  await validateFaculty(payload.school, payload.faculty)
+       if(verifyFaculty === false) {
+         throw {
+          ok : false,
+          status :StatusCodes.BAD_REQUEST,
+          message : `Unable to find faculty: ${payload.faculty} in school : ${payload.school}`
+         }
+       }
+     }
+ 
     let keys = Object.keys(payload);
     for(let i = 0; i < keys.length; i++){
       user[keys[i]] = payload[keys[i]];

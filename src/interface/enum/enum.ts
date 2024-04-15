@@ -30,3 +30,9 @@ export enum attachment_exts{
   doc="doc",
   docx="docx"
 }
+
+
+export enum Schools {
+    Futminna = "Federal University Of Technology Minna",
+    Udusok = "Usmanu Danfodiyo University Sokoto (UDUS)"  
+} 

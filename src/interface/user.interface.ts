@@ -1,3 +1,4 @@
+import { Schools } from "./enum/enum";
 
 export interface IUser {
   id?: number;
@@ -12,6 +13,7 @@ export interface IUser {
   data: any
 }
 export interface IUserInfo {
+  school: Schools
   department: string,
   level: string,
   account_type: string,

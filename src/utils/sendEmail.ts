@@ -1,4 +1,5 @@
 import { mail } from "../config/emailConfig";
+
 // export const sendEmail = async (dtto, subject, text, html):  Promise<void> => {
 //   try {
 //   const send = await mail.sendMail({
@@ -32,3 +33,8 @@ export const sendMail = async (details: { to: Array<string>, subject: string, te
         throw error;
     } 
 }
+
+
+
+
+

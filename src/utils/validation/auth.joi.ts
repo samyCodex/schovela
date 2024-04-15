@@ -4,6 +4,7 @@ import {
 } from 'http-status-codes'
 import { IRegister, IverifyUser, IUserInfo, ILogin, IForgotten, IChangePassword } from '../../interface/user.interface';
 import { ApiResponseType } from '../../interface/api.interface';
+import { Schools } from '../../interface/enum/enum';
 export const registerSchema = (payload: IRegister): Promise<ApiResponseType> => {
       const body = Joi.object({
         fullname: Joi.string().required().min(4).max(10000),
@@ -35,6 +36,7 @@ export const UserInfoSchema = async (schema: IUserInfo) : Promise<ApiResponseTyp
       department : Joi.string().optional(),
       level : Joi.number().optional(),
       phone : Joi.string().optional(),
+      school: Joi.string().required().valid(...Object.values(Schools)),
       account_type: Joi.string().optional(),
       faculty: Joi.string().optional(),
       dob: Joi.string().optional()

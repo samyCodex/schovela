@@ -22,7 +22,13 @@ export const sequelize = new Sequelize({
     dialect : 'mysql',
     host : process.env.DB_HOST,
     username : process.env.DB_USER,
-    password : process.env.PASS,
+    password : process.env.DB_PASS,
     database : process.env.DATABASE,
     port : Number(process.env.MYSQL_PORT)
 })
+
+console.log( 
+    `${process.env.DB_HOST}`,
+    `${process.env.DB_USER}`,
+    `${process.env.DATABASE}`,
+)   

@@ -3,14 +3,15 @@ import {
   StatusCodes
 } from 'http-status-codes'
 import { createPost, editPost, hidePost } from '../../interface';
-import { attachment_exts, levels } from '../../interface/enum/enum';
+import { Schools, attachment_exts, levels } from '../../interface/enum/enum';
 import { FilterPostInterface } from '../../interface/post.interface';
 import { FieldOfStudy, fieldsOfStudy } from '../../interface/faculty';
 import { IDownload } from '../../model/download.model';
 
+
 const validFaculties = Object.values(FieldOfStudy);
 const validDaparment =  fieldsOfStudy
-const facultySchema = Joi.string().valid(...validFaculties).optional()
+
 export const hidePostSchema = (body: any): Promise<hidePost> => {
   const schema = Joi.object({
     id: Joi.number().required()
@@ -27,8 +28,9 @@ export const editPostSchema = (body: any): Promise<editPost> => {
     id: Joi.number().required(),
     title: Joi.string().optional(),
     desc: Joi.string().optional(),
+    school: Joi.string(),
     level: Joi.any().valid(...Object.values(levels)).optional().allow("").allow(null),
-    faculty: Joi.string().valid(...validFaculties).optional().allow("").allow(null),
+    faculty: Joi.string().valid().optional().allow("").allow(null),
     dept: Joi.string().optional().allow("").allow(null),
     attachment: Joi.string().optional(),
     attachment_ext: Joi.any().optional().valid(...Object.values(attachment_exts)),
@@ -51,11 +53,9 @@ export const createPostSchema = (body: any): Promise<createPost> => {
     title: Joi.string().required(), 
     desc: Joi.string().optional(),
     level: Joi.any().optional().valid(...Object.values(levels)).allow("").allow(null), // Replace 'level1' and 'level2' with your actual level values
-    faculty: Joi.string().valid(...validFaculties).optional().allow("").allow(null),
-    dept: Joi.when('faculty', { 
-      is: Joi.valid(...validFaculties),
-      then: Joi.valid(...(validDaparment[body.faculty] || [])) 
-    }).optional().allow(null).allow(""),
+    school: Joi.string().required().valid(...Object.values(Schools)),
+    faculty: Joi.string().valid().optional().allow("").allow(null),
+    dept: Joi.optional().allow(null).allow(""),
     attachment: Joi.string().required(),
     attachment_ext: Joi.any().required().valid(...Object.values(attachment_exts)),// Replace 'ext1' and 'ext2' with your actual extension values
   });

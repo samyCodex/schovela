@@ -1,6 +1,7 @@
 import { attachment_exts, levels } from "./enum/enum";
 
 export interface createPost {
+   school: string,
    title: string,
    desc: string,
    level : levels,
