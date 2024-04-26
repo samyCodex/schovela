@@ -20,9 +20,9 @@ import {Sequelize} from 'sequelize'
 
 export const sequelize = new Sequelize({
     dialect : 'mysql',
-    host : process.env.HOST,
+    host : process.env.DB_HOST,
     username : process.env.USER,
-    password : process.env.PASS,
+    password : process.env.DB_PASS,
     database : process.env.DATABASE,
     port : Number(process.env.MYSQL_PORT)
 })
