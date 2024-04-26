@@ -185,7 +185,7 @@ export const getAllPostService = async (payload: FilterPostInterface, user: IUse
               //        where = { dept: department, faculty: user.data.faculty, level: user.data.level }
               // ]
 
-       }
+       } 
 
        for (let i = 0; i < filterKeys.length; i++) {
               let key = filterKeys[i]; 
@@ -214,11 +214,11 @@ export const getAllPostService = async (payload: FilterPostInterface, user: IUse
                      where[key] = filters[key];
               }
        }
-       // console.log(where)
+       console.log(where)
        let count = await PostModel.count({ where });
        let total_pages = Math.ceil(count / limit)
        post = await PostModel.findAll({ where, limit, offset, order: [['id', 'DESC']] }) 
-       console.log(post)
+    
 
        if (offset > 0) {
               offset = offset * limit;

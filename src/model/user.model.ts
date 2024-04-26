@@ -1,23 +1,23 @@
 import { Model, DataTypes, DATE, Sequelize, UUIDV4 } from "sequelize";
 import { sequelize } from "../config/database";
-import { ROLE, Schools } from "../interface/enum/enum";;
+import { ROLE, Schools } from "../interface/enum/enum";
 class User extends Model {
-   id!: number;
-   fullname : string;
-   email : string;
-   password : string;
-   department: string;
-   level : string;
-   account_type : string;
-   dob : string;
-   faculty: string;
-   phone: string;
-   confirmationCode: string;
-   status : boolean;
-   resetToken : string;
-   profile_img: string;
-   school: string;
-   role: ROLE
+  id!: number;
+  fullname: string;
+  email: string;
+  password: string;
+  department: string;
+  level: string;
+  account_type: string;
+  dob: string;
+  faculty: string;
+  phone: string;
+  confirmationCode: string;
+  status: boolean;
+  resetToken: string;
+  profile_img: string;
+  school: string;
+  role: ROLE;
 }
 
 User.init(
@@ -29,10 +29,10 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-    }, 
+    },
     phone: {
-      type: DataTypes.STRING,  
-      allowNull: false, 
+      type: DataTypes.STRING,
+      allowNull: false,
       defaultValue: "",
     },
     password: {
@@ -50,8 +50,9 @@ User.init(
       allowNull: false,
       defaultValue: "",
     },
-    school :{
-      type : DataTypes.ENUM(...Object.values(Schools)),
+    school: {
+      type: DataTypes.STRING,
+      allowNull: false,
       defaultValue: Schools.Udusok
     },
     account_type: {
@@ -66,7 +67,7 @@ User.init(
     },
     faculty: {
       type: DataTypes.STRING,
-      allowNull: false, 
+      allowNull: false,
       defaultValue: "",
     },
     confirmationCode: {
@@ -78,7 +79,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    resetToken : {
+    resetToken: {
       type: DataTypes.STRING,
       allowNull: false,
       defaultValue: "",
@@ -90,8 +91,8 @@ User.init(
     role: {
       type: DataTypes.STRING,
       allowNull: false,
-      defaultValue: ROLE.user, 
-    }
+      defaultValue: ROLE.user,
+    },
   },
   { sequelize }
 );

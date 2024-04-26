@@ -33,6 +33,6 @@ export enum attachment_exts{
 
 
 export enum Schools {
-    Futminna = "Federal University Of Technology Minna",
-    Udusok = "Usmanu Danfodiyo University Sokoto (UDUS)"  
+  Futminna = "futminna",
+  Udusok = "udus"  
 } 

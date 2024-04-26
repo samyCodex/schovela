@@ -31,8 +31,9 @@ Post.init(
       allowNull: false,
     },
     school: {
-      type: DataTypes.ENUM(...Object.values(Schools)),
-      defaultValue: Schools.Udusok,
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: Schools.Udusok
     },
     desc: {
       type: DataTypes.TEXT("long"),
