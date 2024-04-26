@@ -67,6 +67,7 @@ export const createPostSchema = (body: any): Promise<createPost> => {
 export const filterPostValidation = async (body : FilterPostInterface): Promise<FilterPostInterface> => {
   const schema = Joi.object({
     level: Joi.any().valid(...Object.values(levels)),
+    school: Joi.string(),
     faculty: Joi.string(),
     dept: Joi.string(),
     live: Joi.boolean().optional(),
